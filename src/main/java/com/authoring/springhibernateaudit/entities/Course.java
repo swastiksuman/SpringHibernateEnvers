@@ -9,29 +9,33 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 @Entity
-public class Course implements Serializable{
-	
+public class Course implements Serializable {
+
 	private static final long serialVersionUID = 1003468154086252767L;
 
 	@Id
 	@GeneratedValue
 	private Long id;
-	
-	@Column(nullable=false)
+
+	@Column(nullable = false)
 	private String name;
-	
-	@OneToMany(mappedBy="course")
+
+	@OneToMany(mappedBy = "course")
 	private List<Review> reviews = new ArrayList<Review>();
-	
+
+	@ManyToMany(mappedBy="courses") //Non Owner
+	private List<Student> students = new ArrayList<Student>();
+
 	@UpdateTimestamp
 	private LocalDateTime lastUpdatedDate;
-	
+
 	@CreationTimestamp
 	private LocalDateTime createdDate;
 
@@ -74,12 +78,21 @@ public class Course implements Serializable{
 	public void setCreatedDate(LocalDateTime createdDate) {
 		this.createdDate = createdDate;
 	}
-	
-	public void addReview(Review review){
+
+	public void addReview(Review review) {
 		this.reviews.add(review);
 	}
-	
-	public void removeReview(Review review){
+
+	public void removeReview(Review review) {
 		this.reviews.remove(review);
 	}
+
+	public List<Student> getStudents() {
+		return students;
+	}
+
+	public void addStudents(Student student) {
+		this.students.add(student);
+	}
+
 }
