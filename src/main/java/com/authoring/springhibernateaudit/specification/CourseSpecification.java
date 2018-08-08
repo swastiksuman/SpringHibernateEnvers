@@ -15,9 +15,9 @@ public class CourseSpecification implements Specification {
 	@Override
 	public Predicate toPredicate(Root root, CriteriaQuery query, CriteriaBuilder criteriaBuilder) {
 		List<Predicate> predicates = new ArrayList<Predicate>();
-		predicates.add(criteriaBuilder.or(criteriaBuilder.like(root.get("name"), "%" + "swastik" + "%"),
-				criteriaBuilder.like(root.get("name"), "%" + "hibernate" + "%")));
-		return criteriaBuilder.and(predicates.toArray(new Predicate[predicates.size()]));
+		predicates.add(criteriaBuilder.like(root.get("name"), "%" + "swastik" + "%"));
+		predicates.add(criteriaBuilder.like(root.get("name"), "%" + "hibernate" + "%"));
+		return criteriaBuilder.or(predicates.toArray(new Predicate[predicates.size()]));
 	}
 
 }

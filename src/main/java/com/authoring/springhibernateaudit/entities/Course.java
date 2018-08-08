@@ -26,10 +26,13 @@ public class Course implements Serializable {
 
 	@Column(nullable = false)
 	private String name;
-
+	
+	@Column
+	private Difficulty difficulty;
+	
 	@OneToMany(mappedBy = "course")
 	private List<Review> reviews = new ArrayList<Review>();
-
+	
 	@ManyToMany(mappedBy="courses") //Non Owner
 	private List<Student> students = new ArrayList<Student>();
 
@@ -93,6 +96,14 @@ public class Course implements Serializable {
 
 	public void addStudents(Student student) {
 		this.students.add(student);
+	}
+
+	public Difficulty getDifficulty() {
+		return difficulty;
+	}
+
+	public void setDifficulty(Difficulty difficulty) {
+		this.difficulty = difficulty;
 	}
 
 }
