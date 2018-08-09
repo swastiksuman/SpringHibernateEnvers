@@ -3,6 +3,7 @@ package com.authoring.springhibernateaudit.entities;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -37,10 +38,10 @@ public class Course implements Serializable {
 	private List<Student> students = new ArrayList<Student>();
 
 	@UpdateTimestamp
-	private LocalDateTime lastUpdatedDate;
+	private Date lastUpdatedDate;
 
 	@CreationTimestamp
-	private LocalDateTime createdDate;
+	private Date createdDate;
 
 	public Long getId() {
 		return id;
@@ -66,19 +67,19 @@ public class Course implements Serializable {
 		this.reviews = reviews;
 	}
 
-	public LocalDateTime getLastUpdatedDate() {
+	public Date getLastUpdatedDate() {
 		return lastUpdatedDate;
 	}
 
-	public void setLastUpdatedDate(LocalDateTime lastUpdatedDate) {
+	public void setLastUpdatedDate(Date lastUpdatedDate) {
 		this.lastUpdatedDate = lastUpdatedDate;
 	}
 
-	public LocalDateTime getCreatedDate() {
+	public Date getCreatedDate() {
 		return createdDate;
 	}
 
-	public void setCreatedDate(LocalDateTime createdDate) {
+	public void setCreatedDate(Date createdDate) {
 		this.createdDate = createdDate;
 	}
 

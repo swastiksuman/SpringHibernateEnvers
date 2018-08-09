@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.authoring.springhibernateaudit.entities.Course;
+import com.authoring.springhibernateaudit.entities.FilterVO;
 import com.authoring.springhibernateaudit.entities.ProjectProduct;
 import com.authoring.springhibernateaudit.repositories.ICourseFilterRepository;
 import com.authoring.springhibernateaudit.repositories.ICourseRepository;
@@ -45,8 +46,14 @@ public class HomeController {
 		return course;
 	}
 	
+	/*{
+		"createdDateFrom" : "2018-08-08T21:47:15.462",
+		"createdDateTo" : "2018-08-10T21:47:15.462",
+		"difficulty": "EASY"
+	}*/
 	@PostMapping("/search")
-	public List<Course> getCourse(){
-		return courseFilterRepository.findAll(new CourseSpecification());
+	public List<Course> getCourse(@RequestBody FilterVO filterVO){
+		System.out.println(filterVO);
+		return courseFilterRepository.findAll(new CourseSpecification(filterVO));
 	}
 }
