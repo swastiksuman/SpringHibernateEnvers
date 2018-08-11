@@ -29,5 +29,7 @@ dependencies {
 	compile('org.springframework.boot:spring-boot-starter-web')
 	compile('org.postgresql:postgresql:9.4-1206-jdbc42')
 	compile('org.springframework.data:spring-data-envers:2.0.9.RELEASE')
+	compile('org.springframework:spring-aop:5.0.1.RELEASE')
+	compile('org.aspectj:aspectjweaver:1.8.12')
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 }
