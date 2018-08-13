@@ -8,6 +8,8 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
@@ -28,6 +30,7 @@ public class Course implements Serializable {
 	@Column(nullable = false)
 	private String name;
 	
+	@Enumerated(EnumType.STRING)
 	@Column
 	private Difficulty difficulty;
 	
