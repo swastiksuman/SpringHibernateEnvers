@@ -12,6 +12,7 @@ import com.authoring.springhibernateaudit.dao.CosDAO;
 import com.authoring.springhibernateaudit.entities.Course;
 import com.authoring.springhibernateaudit.entities.FilterVO;
 import com.authoring.springhibernateaudit.entities.ProjectProduct;
+import com.authoring.springhibernateaudit.models.ProjectProductVO;
 import com.authoring.springhibernateaudit.repositories.ICourseFilterRepository;
 import com.authoring.springhibernateaudit.repositories.ICourseRepository;
 import com.authoring.springhibernateaudit.repositories.IProjectProductRepository;
@@ -29,13 +30,13 @@ public class HomeController {
 
 	@Autowired
 	IReviewRepository reviewRepository;
-	
+
 	@Autowired
 	ICourseFilterRepository courseFilterRepository;
 
 	@Autowired
 	CosDAO cosDAO;
-	
+
 	@PostMapping("/addprojectproduct")
 	public ProjectProduct saveProjectProduct(@RequestBody ProjectProduct projectProduct) {
 		return projectProductRepository.save(projectProduct);
@@ -50,20 +51,19 @@ public class HomeController {
 		});
 		return course;
 	}
-	
-	/*{
-		"createdDateFrom" : "2018-08-08T21:47:15.462",
-		"createdDateTo" : "2018-08-10T21:47:15.462",
-		"difficulty": "EASY"
-	}*/
+
+	/*
+	 * { "createdDateFrom" : "2018-08-08T21:47:15.462", "createdDateTo" :
+	 * "2018-08-10T21:47:15.462", "difficulty": "EASY" }
+	 */
 	@PostMapping("/search")
-	public List<Course> getCourse(@RequestBody FilterVO filterVO){
+	public List<Course> getCourse(@RequestBody FilterVO filterVO) {
 		System.out.println(filterVO);
 		return courseFilterRepository.findAll(new CourseSpecification(filterVO));
 	}
-	
+
 	@GetMapping("query")
-	public void execute(){
-		cosDAO.getIdsInConflict();
+	public List<ProjectProductVO> execute() {
+		return cosDAO.getIdsInConflict();
 	}
 }
