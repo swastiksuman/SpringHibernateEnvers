@@ -29,6 +29,9 @@ public class ProjectProduct implements Serializable {
 	@Column(name = "product_id")
 	private Long product_id;
 	
+	@Column(name="version")
+	private double version;
+	
 	@Column(name = "created_date")
 	private Date createdDate;
 	
@@ -78,4 +81,14 @@ public class ProjectProduct implements Serializable {
 	public void setOldObject(String oldObject) {
 		this.oldObject = oldObject;
 	}
+
+	public double getVersion() {
+		return version;
+	}
+
+	public void setVersion(double version) {
+		this.version = version;
+	}
+	
+	
 }

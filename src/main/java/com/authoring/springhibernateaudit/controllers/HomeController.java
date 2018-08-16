@@ -3,10 +3,12 @@ package com.authoring.springhibernateaudit.controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.authoring.springhibernateaudit.dao.CosDAO;
 import com.authoring.springhibernateaudit.entities.Course;
 import com.authoring.springhibernateaudit.entities.FilterVO;
 import com.authoring.springhibernateaudit.entities.ProjectProduct;
@@ -31,6 +33,9 @@ public class HomeController {
 	@Autowired
 	ICourseFilterRepository courseFilterRepository;
 
+	@Autowired
+	CosDAO cosDAO;
+	
 	@PostMapping("/addprojectproduct")
 	public ProjectProduct saveProjectProduct(@RequestBody ProjectProduct projectProduct) {
 		return projectProductRepository.save(projectProduct);
@@ -55,5 +60,10 @@ public class HomeController {
 	public List<Course> getCourse(@RequestBody FilterVO filterVO){
 		System.out.println(filterVO);
 		return courseFilterRepository.findAll(new CourseSpecification(filterVO));
+	}
+	
+	@GetMapping("query")
+	public void execute(){
+		cosDAO.getIdsInConflict();
 	}
 }
