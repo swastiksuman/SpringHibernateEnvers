@@ -66,4 +66,10 @@ public class HomeController {
 	public List<ProjectProductVO> execute() {
 		return cosDAO.getIdsInConflict();
 	}
+	
+	@GetMapping("hql-test")
+	public List<Boolean> getProducts(){
+		return projectProductRepository.getProductsInCos();
+	}
+	
 }
